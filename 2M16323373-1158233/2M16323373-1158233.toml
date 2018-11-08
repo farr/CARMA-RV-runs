@@ -1,0 +1,49 @@
+[RV]
+# Each file in this directory should be CSV with a header line; these will be
+# loaded as separate time series with unique calibration parameters.
+rvdir = "/Users/wfarr/Research/CARMA-RV-runs/2M16323373-1158233/data"
+
+# These should match the column labels for t, RV, and sigma_RV:
+timekey = "mjd"
+rvkey = "rv"
+rverrkey = "rv_err"
+
+[Planet]
+# The minimum and maximum Keplerian periods to consider in the fit
+Pmin = 36.0 # Time units as in RV file
+Pmax = 40.0 # Same
+
+[CARMA]
+# The number of DRW and oscillating components (>= 1)
+ndrw = 1
+nosc = 1
+
+# The minimum and maximum "rate" for the exponential damping in the DRW
+# components.
+rmin = 0.00125 # ~1/T
+rmax = 1.1 # ~1/dt_min
+
+# We want about four oscillations at least
+fmin = 0.005
+fmax = 1.1 # 1/dt_min
+
+# The maximum quality factor for the oscillatory components.
+Qmax = 1000
+
+[Output]
+# Directory for output of the sampling state and plots.
+outdir = "/Users/wfarr/Research/CARMA-RV-runs/2M16323373-1158233/runs"
+
+# Checkpointing during the run; if the checkpoint file is present, the run will
+# re-start at the last checkpoint
+ckptfile = "1-1.ckpt"
+
+# Stores the final sampling.
+statefile = "1-1.h5"
+
+[Sampler]
+# Options controlling the nested sampling: live points, initial number of MCMC
+# steps, and stopping criterion
+nlive = 1024
+nmcmc = 128
+dZstop = 0.01
